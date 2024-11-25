@@ -1,113 +1,121 @@
+"use client";
+
 import { useState } from "react";
 import { ethers } from "ethers";
-import { useReadContract, useWriteContract } from "wagmi";
+import { parseEther } from "viem";
 
-const ClaimBonus: React.FC = () => {
-  const [step, setStep] = useState<"initial" | "cooldown" | "unstaking" | "completed">("initial");
+interface ClaimBonusProps {
+  hotelPrice: number;
+}
+
+const ClaimBonus: React.FC<ClaimBonusProps> = ({ hotelPrice }) => {
+  const [step, setStep] = useState<"initial" | "cooldown" | "completed">("initial");
   const [error, setError] = useState<string | null>(null);
+  const [cooldownEndTime, setCooldownEndTime] = useState<number | null>(null);
 
   const stakingContract = process.env.NEXT_PUBLIC_STAKING_CONTRACT as `0x${string}`;
-  const deployerWallet = process.env.NEXT_PUBLIC_DEPLOYER_WALLET as `0x${string}`;
   const deployerPrivateKey = process.env.NEXT_PUBLIC_DEPLOYER_PRIVATE_KEY as string;
+  const deployerWallet = process.env.NEXT_PUBLIC_DEPLOYER_WALLET as `0x${string}`;
+  const priceInUSDe = parseEther(hotelPrice.toString());
 
-  // Contract write hooks
-  const { writeContract: initiateCooldown } = useWriteContract();
-
-  // Get cooldown duration
-  const { data: cooldownPeriod } = useReadContract({
-    address: stakingContract,
-    abi: [
-      {
-        inputs: [],
-        name: "cooldownDuration",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "view",
-        type: "function",
-      },
-    ],
-    functionName: "cooldownDuration",
-  });
-
-  // Function to execute automated unstaking after cooldown
-  const executeAutomatedUnstaking = async () => {
-    try {
-      const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_RPC_URL);
-      const wallet = new ethers.Wallet(deployerPrivateKey, provider);
-      const stakingContractWithSigner = new ethers.Contract(
-        stakingContract,
-        [
-          {
-            inputs: [{ internalType: "address", name: "recipient", type: "address" }],
-            name: "unstake",
-            outputs: [],
-            stateMutability: "nonpayable",
-            type: "function",
-          },
-        ],
-        wallet,
-      );
-
-      // Execute unstake transaction
-      const tx = await stakingContractWithSigner.unstake(deployerWallet);
-      await tx.wait();
-
-      setStep("completed");
-    } catch (error) {
-      console.error("Automated unstaking error:", error);
-      setError("Failed to complete unstaking. Please try again.");
-    }
-  };
-
+  // Trigger the cooldown action
   const handleStartCooldown = async () => {
     try {
       setError(null);
       setStep("cooldown");
 
-      // Get the sUSDe balance of the deployer wallet
-      const sUsdeBalance = await getDeployerSUsdeBalance();
+      console.log("Initiating cooldown with price:", hotelPrice, "USDe");
 
-      await initiateCooldown({
-        address: stakingContract,
-        abi: [
+      // Ensure deployer wallet is correctly set up
+      const provider = new ethers.JsonRpcProvider("https://ethereum-sepolia-rpc.publicnode.com");
+      const deployerSigner = new ethers.Wallet(deployerPrivateKey, provider);
+
+      console.log("Deployer Wallet Address:", deployerSigner.address);
+
+      // Initiate the cooldown from the deployer wallet
+      const stakingContractInstance = new ethers.Contract(
+        stakingContract,
+        [
           {
-            inputs: [{ internalType: "uint256", name: "amount", type: "uint256" }],
             name: "cooldownAssets",
-            outputs: [],
-            stateMutability: "nonpayable",
             type: "function",
+            stateMutability: "nonpayable",
+            inputs: [{ name: "amount", type: "uint256" }],
+            outputs: [],
           },
         ],
-        functionName: "cooldownAssets",
-        args: [sUsdeBalance],
-      });
+        deployerSigner,
+      );
 
-      // Schedule automated unstaking after cooldown period
-      setTimeout(executeAutomatedUnstaking, Number(cooldownPeriod) * 1000);
+      const tx = await stakingContractInstance.cooldownAssets(priceInUSDe);
+      console.log("Cooldown Transaction Sent:", tx);
+
+      await tx.wait(); // Wait for transaction confirmation
+      console.log("Cooldown Transaction Confirmed");
+
+      // Set cooldown end time (1 hour)
+      const cooldownDuration = 3600; // 1 hour in seconds
+      const endTime = Math.floor(Date.now() / 1000) + cooldownDuration;
+      setCooldownEndTime(endTime);
+
+      // Set a timer to execute unstake after 1 hour
+      setTimeout(() => {
+        handleUnstake();
+      }, cooldownDuration * 1000); // Wait 1 hour
     } catch (error) {
-      console.error("Cooldown error:", error);
-      setError("Failed to start cooldown. Please try again.");
+      console.error("Error during cooldown:", error);
+      setError("Cooldown failed. Please try again.");
       setStep("initial");
     }
   };
 
-  // Helper function to get deployer's sUSDe balance
-  const getDeployerSUsdeBalance = async () => {
-    const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_RPC_URL);
-    const sUsdeContract = new ethers.Contract(
-      stakingContract,
-      [
-        {
-          inputs: [{ internalType: "address", name: "account", type: "address" }],
-          name: "balanceOf",
-          outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-          stateMutability: "view",
-          type: "function",
-        },
-      ],
-      provider,
-    );
+  // Function to send sUSDe from deployer wallet to 0x0000 automatically
+  const handleUnstake = async () => {
+    try {
+      setError(null);
+      setStep("completed");
 
-    return await sUsdeContract.balanceOf(deployerWallet);
+      console.log("Unstaking assets after cooldown period");
+
+      // Use ethers to sign the transaction with the deployer's private key
+      const provider = new ethers.JsonRpcProvider("https://ethereum-sepolia-rpc.publicnode.com");
+      const deployerSigner = new ethers.Wallet(deployerPrivateKey, provider);
+
+      const stakingContractInstance = new ethers.Contract(
+        stakingContract,
+        [
+          {
+            name: "unstake",
+            type: "function",
+            stateMutability: "nonpayable",
+            inputs: [{ name: "receiver", type: "address" }],
+            outputs: [],
+          },
+        ],
+        deployerSigner,
+      );
+
+      const tx = await stakingContractInstance.unstake(deployerWallet); // Unstake from deployer's wallet
+      await tx.wait(); // Wait for transaction confirmation
+
+      console.log("Unstake Transaction Confirmed");
+
+      setStep("completed"); // Mark the process as completed
+    } catch (error) {
+      console.error("Error during unstaking:", error);
+      setError("Unstake failed. Please try again.");
+    }
+  };
+
+  // Get remaining cooldown time
+  const getRemainingCooldownTime = () => {
+    if (!cooldownEndTime) return null;
+    const now = Math.floor(Date.now() / 1000);
+    const remaining = cooldownEndTime - now;
+    if (remaining <= 0) return "Ready to unstake";
+    const hours = Math.floor(remaining / 3600);
+    const minutes = Math.floor((remaining % 3600) / 60);
+    return `${hours}h ${minutes}m remaining`;
   };
 
   return (
@@ -117,25 +125,23 @@ const ClaimBonus: React.FC = () => {
       {step === "initial" && (
         <button
           onClick={handleStartCooldown}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          disabled={false} // No longer disabling based on cooldown, just showing the start
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
-          Start Cooldown Period
+          Start bonus claim
         </button>
       )}
 
       {step === "cooldown" && (
-        <p className="text-sm text-gray-600">
-          Cooldown period initiated. Unstaking will happen automatically after 1 hour.
-        </p>
-      )}
-
-      {step === "completed" && (
         <div>
-          <p className="text-sm text-green-600 mt-2">
-            Unstaking completed! The rewards have been sent to the deployer wallet.
+          <p className="text-sm text-gray-600 mt-2">
+            Cooldown started. Bonus will be sent to your wallet after 1 hour. {getRemainingCooldownTime()}
           </p>
+          <p className="text-sm text-gray-600 mt-4">Your bonus is being automatically claimed.</p>
         </div>
       )}
+
+      {step === "completed" && <p className="text-sm text-green-600 mt-2">Bonus claimed successfully!</p>}
     </div>
   );
 };

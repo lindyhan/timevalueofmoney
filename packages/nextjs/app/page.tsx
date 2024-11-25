@@ -11,7 +11,7 @@ export default function Home() {
   const [hotelPrice, setHotelPrice] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [paymentComplete, setPaymentComplete] = useState(false); // New state for payment
+  const [paymentComplete, setPaymentComplete] = useState(false);
   const { isConnected } = useAccount();
 
   const handlePriceFetch = async () => {
@@ -29,7 +29,7 @@ export default function Home() {
         throw new Error("Invalid data received from API");
       }
 
-      const priceInUsDe = Number(data.price) / 100; // Convert to USDe format
+      const priceInUsDe = Number(data.price) / 100;
 
       setHotelName(data.name);
       setHotelPrice(priceInUsDe);
@@ -76,10 +76,9 @@ export default function Home() {
         </div>
       )}
 
-      {paymentComplete && (
+      {paymentComplete && hotelPrice !== null && (
         <div className="mt-8 w-full max-w-md">
-          <h2 className="text-xl font-semibold mb-4 text-center">Claim Your Bonus</h2>
-          <ClaimBonus />
+          <ClaimBonus hotelPrice={hotelPrice} />
         </div>
       )}
     </div>

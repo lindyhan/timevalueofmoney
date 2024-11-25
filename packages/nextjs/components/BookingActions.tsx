@@ -15,12 +15,11 @@ const BookingActions: React.FC<BookingActionsProps> = ({ hotelPrice, onPaymentCo
 
   const usdeToken = process.env.NEXT_PUBLIC_USDE_TOKEN as `0x${string}`;
   const stakingContract = process.env.NEXT_PUBLIC_STAKING_CONTRACT as `0x${string}`;
+  const deployerWallet = process.env.NEXT_PUBLIC_DEPLOYER_WALLET as `0x${string}`;
+
   const priceInUSDe = parseEther(hotelPrice.toString());
 
-  // Approval transaction
   const { writeContract: approveToken, isPending: isApproving } = useWriteContract();
-
-  // Payment/Staking transaction
   const { writeContract: makePayment, isPending: isPaying } = useWriteContract();
 
   const handleApprove = async () => {
@@ -32,24 +31,26 @@ const BookingActions: React.FC<BookingActionsProps> = ({ hotelPrice, onPaymentCo
         address: usdeToken,
         abi: [
           {
-            inputs: [
-              { internalType: "address", name: "spender", type: "address" },
-              { internalType: "uint256", name: "amount", type: "uint256" },
-            ],
             name: "approve",
-            outputs: [{ internalType: "bool", name: "", type: "bool" }],
-            stateMutability: "nonpayable",
             type: "function",
+            stateMutability: "nonpayable",
+            inputs: [
+              { name: "spender", type: "address" },
+              { name: "amount", type: "uint256" },
+            ],
+            outputs: [{ type: "bool" }],
           },
         ],
         functionName: "approve",
         args: [stakingContract, priceInUSDe],
       });
 
-      setStep("approved");
+      setTimeout(() => {
+        setStep("approved");
+      }, 15000);
     } catch (error) {
       console.error("Approval error:", error);
-      setError("Approval failed. Please try again.");
+      setError("Failed to approve USDe spending. Please try again.");
       setStep("initial");
     }
   };
@@ -59,30 +60,31 @@ const BookingActions: React.FC<BookingActionsProps> = ({ hotelPrice, onPaymentCo
       setError(null);
       setStep("paying");
 
-      // Call deposit function on staking contract
       await makePayment({
         address: stakingContract,
         abi: [
           {
-            inputs: [
-              { internalType: "address", name: "to", type: "address" },
-              { internalType: "uint256", name: "amount", type: "uint256" },
-            ],
             name: "deposit",
-            outputs: [],
-            stateMutability: "nonpayable",
             type: "function",
+            stateMutability: "nonpayable",
+            inputs: [
+              { name: "amount", type: "uint256" },
+              { name: "to", type: "address" },
+            ],
+            outputs: [],
           },
         ],
         functionName: "deposit",
-        args: [process.env.NEXT_PUBLIC_DEPLOYER_WALLET as `0x${string}`, priceInUSDe],
+        args: [priceInUSDe, deployerWallet],
       });
 
-      setStep("paid");
-      onPaymentComplete();
+      setTimeout(() => {
+        setStep("paid");
+        onPaymentComplete();
+      }, 15000);
     } catch (error) {
-      console.error("Payment error:", error);
-      setError("Payment failed. Please try again.");
+      console.error("Staking error:", error);
+      setError("Failed to complete. Please try again.");
       setStep("approved");
     }
   };
@@ -107,11 +109,15 @@ const BookingActions: React.FC<BookingActionsProps> = ({ hotelPrice, onPaymentCo
           disabled={isPaying}
           className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:bg-gray-400"
         >
-          {isPaying ? "Processing Payment..." : `Pay ${hotelPrice.toFixed(2)} USDe`}
+          {isPaying ? "Payment in progress..." : `Pay ${hotelPrice.toFixed(2)} USDe`}
         </button>
       )}
 
-      {step === "paid" && <p className="text-sm text-green-600 mt-2">Payment successful!</p>}
+      {step === "paid" && (
+        <p className="text-sm text-green-600 mt-2">
+          Payment successful! You may claim your bonus after your hotel stay.
+        </p>
+      )}
     </div>
   );
 };
