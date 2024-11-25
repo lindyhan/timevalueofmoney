@@ -1,0 +1,249 @@
+{
+  "address": "0x180A58560226B104C90be50259308505773F91fB",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_USDeToken",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_USDeStaking",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_deployerWallet",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Staked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "reward",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "stakedAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Unstaked",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "USDeStaking",
+      "outputs": [
+        {
+          "internalType": "contract IEthenaStaking",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "USDeToken",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "claimReward",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "deployerWallet",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "stakeUSDe",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "userStakedUSDe",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xbf1f26f7f035c4a7ef82b3ed0f9a5950a0bd2907ee56bcc3e074d60cec06aa32",
+  "receipt": {
+    "to": null,
+    "from": "0xd219C8b54832d6ca7d933a42d51F8bDC3Ee4370B",
+    "contractAddress": "0x180A58560226B104C90be50259308505773F91fB",
+    "transactionIndex": 335,
+    "gasUsed": "565856",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x6933c40c5c93ccf28b073d95974f3a5ee39c01bffac856ca01367ebc412cfdfe",
+    "transactionHash": "0xbf1f26f7f035c4a7ef82b3ed0f9a5950a0bd2907ee56bcc3e074d60cec06aa32",
+    "logs": [],
+    "blockNumber": 7139917,
+    "cumulativeGasUsed": "15648948",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0xf805ce4F96e0EdD6f0b6cd4be22B34b92373d696",
+    "0x1B6877c6Dac4b6De4c5817925DC40E2BfdAFc01b",
+    "0xd219C8b54832d6ca7d933a42d51F8bDC3Ee4370B"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "a39006cdac6f94dbb2de5c17cff37d8d",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_USDeToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_USDeStaking\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_deployerWallet\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Staked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"reward\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"stakedAmount\",\"type\":\"uint256\"}],\"name\":\"Unstaked\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"USDeStaking\",\"outputs\":[{\"internalType\":\"contract IEthenaStaking\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"USDeToken\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"claimReward\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"deployerWallet\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"stakeUSDe\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"userStakedUSDe\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/HotelBooking.sol\":\"HotelBooking\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (token/ERC20/IERC20.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Interface of the ERC20 standard as defined in the EIP.\\n */\\ninterface IERC20 {\\n    /**\\n     * @dev Emitted when `value` tokens are moved from one account (`from`) to\\n     * another (`to`).\\n     *\\n     * Note that `value` may be zero.\\n     */\\n    event Transfer(address indexed from, address indexed to, uint256 value);\\n\\n    /**\\n     * @dev Emitted when the allowance of a `spender` for an `owner` is set by\\n     * a call to {approve}. `value` is the new allowance.\\n     */\\n    event Approval(address indexed owner, address indexed spender, uint256 value);\\n\\n    /**\\n     * @dev Returns the value of tokens in existence.\\n     */\\n    function totalSupply() external view returns (uint256);\\n\\n    /**\\n     * @dev Returns the value of tokens owned by `account`.\\n     */\\n    function balanceOf(address account) external view returns (uint256);\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from the caller's account to `to`.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transfer(address to, uint256 value) external returns (bool);\\n\\n    /**\\n     * @dev Returns the remaining number of tokens that `spender` will be\\n     * allowed to spend on behalf of `owner` through {transferFrom}. This is\\n     * zero by default.\\n     *\\n     * This value changes when {approve} or {transferFrom} are called.\\n     */\\n    function allowance(address owner, address spender) external view returns (uint256);\\n\\n    /**\\n     * @dev Sets a `value` amount of tokens as the allowance of `spender` over the\\n     * caller's tokens.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * IMPORTANT: Beware that changing an allowance with this method brings the risk\\n     * that someone may use both the old and the new allowance by unfortunate\\n     * transaction ordering. One possible solution to mitigate this race\\n     * condition is to first reduce the spender's allowance to 0 and set the\\n     * desired value afterwards:\\n     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\\n     *\\n     * Emits an {Approval} event.\\n     */\\n    function approve(address spender, uint256 value) external returns (bool);\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from `from` to `to` using the\\n     * allowance mechanism. `value` is then deducted from the caller's\\n     * allowance.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transferFrom(address from, address to, uint256 value) external returns (bool);\\n}\\n\",\"keccak256\":\"0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70\",\"license\":\"MIT\"},\"contracts/HotelBooking.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.20;\\n\\nimport \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\n\\ninterface IEthenaStaking {\\n    function approve(address spender, uint256 amount) external;\\n    function deposit(address to, uint256 amount) external;\\n    function cooldownDuration() external view returns (uint256);\\n    function cooldownAssets(uint256 amount) external;\\n    function unstake(address recipient) external;\\n}\\n\\ncontract HotelBooking {\\n    IERC20 public USDeToken; // ERC20 token for USDe\\n    IEthenaStaking public USDeStaking; // Ethena staking contract\\n    address public deployerWallet; // Deployer wallet address\\n\\n    // Mapping to track staked amounts and rewards for each user\\n    mapping(address => uint256) public userStakedUSDe;\\n\\n    // Events for logging staking and unstaking actions\\n    event Staked(address indexed user, uint256 amount);\\n    event Unstaked(address indexed user, uint256 reward, uint256 stakedAmount);\\n\\n    constructor(\\n        address _USDeToken,\\n        address _USDeStaking,\\n        address _deployerWallet\\n    ) {\\n        USDeToken = IERC20(_USDeToken);\\n        USDeStaking = IEthenaStaking(_USDeStaking);\\n        deployerWallet = _deployerWallet;\\n    }\\n\\n    // Stake function: User stakes USDe, deployer receives sUSDe\\n    function stakeUSDe(uint256 amount) external {\\n        require(amount > 0, \\\"Amount must be greater than 0\\\");\\n\\n        // Transfer USDe from user wallet to this contract\\n        require(\\n            USDeToken.transferFrom(msg.sender, address(this), amount),\\n            \\\"Transfer failed\\\"\\n        );\\n\\n        // Approve the staking contract to spend USDe\\n        USDeToken.approve(address(USDeStaking), amount);\\n\\n        // Deposit USDe into staking contract on behalf of deployer wallet\\n        USDeStaking.deposit(deployerWallet, amount);\\n\\n        // Record the user's staked amount\\n        userStakedUSDe[msg.sender] += amount;\\n\\n        // Emit staking event\\n        emit Staked(msg.sender, amount);\\n    }\\n\\n    // Claim function: User initiates reward claim and unstaking process\\n    function claimReward() external {\\n        uint256 stakedAmount = userStakedUSDe[msg.sender];\\n        require(stakedAmount > 0, \\\"No staked amount to claim rewards\\\");\\n\\n        // Get cooldown duration and initiate cooldown\\n        uint256 cooldownDuration = USDeStaking.cooldownDuration();\\n        USDeStaking.cooldownAssets(stakedAmount);\\n\\n        // After cooldown, deployer wallet performs unstaking\\n        USDeStaking.unstake(deployerWallet);\\n\\n        // Calculate rewards\\n        uint256 totalUnstaked = USDeToken.balanceOf(deployerWallet); // USDe received back\\n        require(totalUnstaked >= stakedAmount, \\\"Unstaking failed\\\");\\n\\n        uint256 rewardAmount = totalUnstaked - stakedAmount;\\n        require(rewardAmount > 0, \\\"No rewards available\\\");\\n\\n        // Transfer reward to the user\\n        require(\\n            USDeToken.transfer(msg.sender, rewardAmount),\\n            \\\"Reward transfer failed\\\"\\n        );\\n\\n        // Reset user's staked amount\\n        userStakedUSDe[msg.sender] = 0;\\n\\n        // Emit unstaking event\\n        emit Unstaked(msg.sender, rewardAmount, stakedAmount);\\n    }\\n}\\n\",\"keccak256\":\"0x0da574cc43cc42a259523e22a6b70151e5f6609923c97ce3c554819dcd239e22\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516108dd3803806108dd83398101604081905261002f9161008d565b600080546001600160a01b039485166001600160a01b0319918216179091556001805493851693821693909317909255600280549190931691161790556100d0565b80516001600160a01b038116811461008857600080fd5b919050565b6000806000606084860312156100a257600080fd5b6100ab84610071565b92506100b960208501610071565b91506100c760408501610071565b90509250925092565b6107fe806100df6000396000f3fe608060405234801561001057600080fd5b50600436106100625760003560e01c806306e3e9c31461006757806308ffc9591461009a5780631582c5bd146100af5780635d60c7be146100da578063b88a802f146100ed578063c51b401d146100f5575b600080fd5b610087610075366004610702565b60036020526000908152604090205481565b6040519081526020015b60405180910390f35b6100ad6100a8366004610732565b610108565b005b6001546100c2906001600160a01b031681565b6040516001600160a01b039091168152602001610091565b6002546100c2906001600160a01b031681565b6100ad610355565b6000546100c2906001600160a01b031681565b6000811161015d5760405162461bcd60e51b815260206004820152601d60248201527f416d6f756e74206d7573742062652067726561746572207468616e203000000060448201526064015b60405180910390fd5b6000546040516323b872dd60e01b8152336004820152306024820152604481018390526001600160a01b03909116906323b872dd906064016020604051808303816000875af11580156101b4573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101d8919061074b565b6102165760405162461bcd60e51b815260206004820152600f60248201526e151c985b9cd9995c8819985a5b1959608a1b6044820152606401610154565b60005460015460405163095ea7b360e01b81526001600160a01b0391821660048201526024810184905291169063095ea7b3906044016020604051808303816000875af115801561026b573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061028f919061074b565b506001546002546040516311f9fbc960e21b81526001600160a01b039182166004820152602481018490529116906347e7ef2490604401600060405180830381600087803b1580156102e057600080fd5b505af11580156102f4573d6000803e3d6000fd5b50503360009081526003602052604081208054859450909250610318908490610783565b909155505060405181815233907f9e71bc8eea02a63969f509818f2dafb9254532904319f9dbda79b67bd34a5f3d9060200160405180910390a250565b33600090815260036020526040902054806103bc5760405162461bcd60e51b815260206004820152602160248201527f4e6f207374616b656420616d6f756e7420746f20636c61696d207265776172646044820152607360f81b6064820152608401610154565b60015460408051633526931560e01b815290516000926001600160a01b03169163352693159160048083019260209291908290030181865afa158015610406573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061042a919061079c565b60015460405163cdac52ed60e01b8152600481018590529192506001600160a01b03169063cdac52ed90602401600060405180830381600087803b15801561047157600080fd5b505af1158015610485573d6000803e3d6000fd5b505060015460025460405163f2888dbb60e01b81526001600160a01b0391821660048201529116925063f2888dbb9150602401600060405180830381600087803b1580156104d257600080fd5b505af11580156104e6573d6000803e3d6000fd5b5050600080546002546040516370a0823160e01b81526001600160a01b0391821660048201529294501691506370a0823190602401602060405180830381865afa158015610538573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061055c919061079c565b9050828110156105a15760405162461bcd60e51b815260206004820152601060248201526f155b9cdd185ada5b99c819985a5b195960821b6044820152606401610154565b60006105ad84836107b5565b9050600081116105f65760405162461bcd60e51b81526020600482015260146024820152734e6f207265776172647320617661696c61626c6560601b6044820152606401610154565b60005460405163a9059cbb60e01b8152336004820152602481018390526001600160a01b039091169063a9059cbb906044016020604051808303816000875af1158015610647573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061066b919061074b565b6106b05760405162461bcd60e51b815260206004820152601660248201527514995dd85c99081d1c985b9cd9995c8819985a5b195960521b6044820152606401610154565b3360008181526003602090815260408083209290925581518481529081018790527f7fc4727e062e336010f2c282598ef5f14facb3de68cf8195c2f23e1454b2b74e910160405180910390a250505050565b60006020828403121561071457600080fd5b81356001600160a01b038116811461072b57600080fd5b9392505050565b60006020828403121561074457600080fd5b5035919050565b60006020828403121561075d57600080fd5b8151801515811461072b57600080fd5b634e487b7160e01b600052601160045260246000fd5b808201808211156107965761079661076d565b92915050565b6000602082840312156107ae57600080fd5b5051919050565b818103818111156107965761079661076d56fea2646970667358221220b691c654b495ef43da28d6ace9206d38d495a30cb41cbc5485af018ad2f1b0a064736f6c63430008140033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100625760003560e01c806306e3e9c31461006757806308ffc9591461009a5780631582c5bd146100af5780635d60c7be146100da578063b88a802f146100ed578063c51b401d146100f5575b600080fd5b610087610075366004610702565b60036020526000908152604090205481565b6040519081526020015b60405180910390f35b6100ad6100a8366004610732565b610108565b005b6001546100c2906001600160a01b031681565b6040516001600160a01b039091168152602001610091565b6002546100c2906001600160a01b031681565b6100ad610355565b6000546100c2906001600160a01b031681565b6000811161015d5760405162461bcd60e51b815260206004820152601d60248201527f416d6f756e74206d7573742062652067726561746572207468616e203000000060448201526064015b60405180910390fd5b6000546040516323b872dd60e01b8152336004820152306024820152604481018390526001600160a01b03909116906323b872dd906064016020604051808303816000875af11580156101b4573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906101d8919061074b565b6102165760405162461bcd60e51b815260206004820152600f60248201526e151c985b9cd9995c8819985a5b1959608a1b6044820152606401610154565b60005460015460405163095ea7b360e01b81526001600160a01b0391821660048201526024810184905291169063095ea7b3906044016020604051808303816000875af115801561026b573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061028f919061074b565b506001546002546040516311f9fbc960e21b81526001600160a01b039182166004820152602481018490529116906347e7ef2490604401600060405180830381600087803b1580156102e057600080fd5b505af11580156102f4573d6000803e3d6000fd5b50503360009081526003602052604081208054859450909250610318908490610783565b909155505060405181815233907f9e71bc8eea02a63969f509818f2dafb9254532904319f9dbda79b67bd34a5f3d9060200160405180910390a250565b33600090815260036020526040902054806103bc5760405162461bcd60e51b815260206004820152602160248201527f4e6f207374616b656420616d6f756e7420746f20636c61696d207265776172646044820152607360f81b6064820152608401610154565b60015460408051633526931560e01b815290516000926001600160a01b03169163352693159160048083019260209291908290030181865afa158015610406573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061042a919061079c565b60015460405163cdac52ed60e01b8152600481018590529192506001600160a01b03169063cdac52ed90602401600060405180830381600087803b15801561047157600080fd5b505af1158015610485573d6000803e3d6000fd5b505060015460025460405163f2888dbb60e01b81526001600160a01b0391821660048201529116925063f2888dbb9150602401600060405180830381600087803b1580156104d257600080fd5b505af11580156104e6573d6000803e3d6000fd5b5050600080546002546040516370a0823160e01b81526001600160a01b0391821660048201529294501691506370a0823190602401602060405180830381865afa158015610538573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061055c919061079c565b9050828110156105a15760405162461bcd60e51b815260206004820152601060248201526f155b9cdd185ada5b99c819985a5b195960821b6044820152606401610154565b60006105ad84836107b5565b9050600081116105f65760405162461bcd60e51b81526020600482015260146024820152734e6f207265776172647320617661696c61626c6560601b6044820152606401610154565b60005460405163a9059cbb60e01b8152336004820152602481018390526001600160a01b039091169063a9059cbb906044016020604051808303816000875af1158015610647573d6000803e3d6000fd5b505050506040513d601f19601f8201168201806040525081019061066b919061074b565b6106b05760405162461bcd60e51b815260206004820152601660248201527514995dd85c99081d1c985b9cd9995c8819985a5b195960521b6044820152606401610154565b3360008181526003602090815260408083209290925581518481529081018790527f7fc4727e062e336010f2c282598ef5f14facb3de68cf8195c2f23e1454b2b74e910160405180910390a250505050565b60006020828403121561071457600080fd5b81356001600160a01b038116811461072b57600080fd5b9392505050565b60006020828403121561074457600080fd5b5035919050565b60006020828403121561075d57600080fd5b8151801515811461072b57600080fd5b634e487b7160e01b600052601160045260246000fd5b808201808211156107965761079661076d565b92915050565b6000602082840312156107ae57600080fd5b5051919050565b818103818111156107965761079661076d56fea2646970667358221220b691c654b495ef43da28d6ace9206d38d495a30cb41cbc5485af018ad2f1b0a064736f6c63430008140033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 113,
+        "contract": "contracts/HotelBooking.sol:HotelBooking",
+        "label": "USDeToken",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_contract(IERC20)77"
+      },
+      {
+        "astId": 116,
+        "contract": "contracts/HotelBooking.sol:HotelBooking",
+        "label": "USDeStaking",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_contract(IEthenaStaking)110"
+      },
+      {
+        "astId": 118,
+        "contract": "contracts/HotelBooking.sol:HotelBooking",
+        "label": "deployerWallet",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_address"
+      },
+      {
+        "astId": 122,
+        "contract": "contracts/HotelBooking.sol:HotelBooking",
+        "label": "userStakedUSDe",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_address,t_uint256)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_contract(IERC20)77": {
+        "encoding": "inplace",
+        "label": "contract IERC20",
+        "numberOfBytes": "20"
+      },
+      "t_contract(IEthenaStaking)110": {
+        "encoding": "inplace",
+        "label": "contract IEthenaStaking",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_address,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
