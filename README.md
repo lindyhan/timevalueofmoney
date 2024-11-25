@@ -8,6 +8,24 @@ https://github.com/user-attachments/assets/ffe5d46a-4026-4e1a-a052-34106b322461
 
 
 
+Why this is particularly relevant for travel industry
+
+(1) B2B transactions are meaningful amounts of money: large size and high frequency
+
+**Example 1.1:**
+- Tour group hotel booking 20 rooms x 10 nights x $200/night = $40,000; if x10 groups x 12 months = $4.8 million
+- Flight booking 50 pax x $1,000/pax average flight cost = $50,000; if x10 groups x 12 months = $6 million
+- So a typical average size travel agency has $10.8 million of idle money trapped in cash flow cycle
+- Scale that globally. Imagine if the likes of Agoda, Booking.com, Expedia use our platform to stake all their idle cash to earn yield
+
+**Example 1.2:**
+- Scale this to other travel assets such as attractions tickets (Disneyland, Universal Studios, the Zoo etc), cruise bookings, bus, train, ferry tickets. Travel agents all around the world book in bulk to get discounted rates. Again this is idle money that can be staked to earn yield
+- Disney World in Florida has 58 million guests per year. Average $150/ticket that is $8.7 billion. Conservatively let's take 50% of that to be bulk purchased by agencies (it is actually more than 50%) and that is $4.35 billion and this is only one theme park
+
+(2) Staking can reduce fraud cases
+
+- Travel agencies are at any point in time holding large amounts of money because tourists pay in advance but they have credit agreements with hotels, airlines and theme parks. They don't have to pay until the tourists use the travel assets, and often they can even pay after the trip is already over. This is temptation for theft or misuse of the funds by rougue employeees. It is also not uncommon for travel agency owners to just keep the money and fold the business. Staking the funds is less risk, more rewards!
+
 ---
 
 In terminal, run
